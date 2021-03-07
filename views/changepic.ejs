@@ -1,0 +1,15 @@
+<%- include('shared/header.ejs') %>
+
+<div class="form">
+    <div id="signup">
+        <h1>Change your avatar?</h1>
+        <form action="/handleAvatar" method="post" enctype="multipart/form-data" class="text-center">
+          <img src="<%= avatar %>" id="avatar">
+          <input type="file" name="avatar"/>
+
+          <button type="submit" class="button button-block mt-3">Confirm</button>
+        </form>
+    </div>
+</div>
+
+<%- include('shared/footer.ejs') %>

@@ -1,0 +1,31 @@
+<%- include('shared/header.ejs') %>
+    <div class="form">
+        <div id="login">
+            <h1>Welcome Back!</h1>
+
+            <form action="/handleSignin" method="post">
+                <div class="field-wrap mb-0">
+                    <label> Email Address<span class="req">*</span> </label>
+                    <input name="email" type="email" value="<%= notRegEmail %>" required/>
+                </div>
+                <% if (!isEmail) { %>
+                    <small class="alert alert-danger text-center">Don't have an account? <a href="/signup">SignUp?</a></small>
+                <% } %>
+
+                <div class="field-wrap mb-0 mt-3">
+                    <label> Password<span class="req">*</span> </label>
+                    <input name="password" type="password" required/>
+                </div>
+                <% if (!isMatch) { %>
+                    <small class="alert alert-danger text-center">Password is Incorrect!</small>
+                <% } %>
+
+                <p class="forgot mt-1"><a href="/forgetpassword">Forgot Password?</a></p>
+
+                <button class="button button-block">Log In</button>
+            </form>
+        </div>
+    </div>
+
+
+    <%- include('shared/footer.ejs') %>

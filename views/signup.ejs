@@ -1,0 +1,65 @@
+<%- include('shared/header.ejs') %>
+
+<div class="form">
+    <div id="signup">
+        <h1>Sign Up for Free</h1>
+
+        <form action="/handleSignUp" method="post">
+            <div class="top-row">
+                <div class="field-wrap mb-0">
+                    <label>First Name<span class="req">*</span></label>
+                    <input name="fname" type="text" value="<%= oldValues.fname %>" minlength="2" maxlength="10" required/>
+                    <% if (error.find(e => e.param == 'fname')) { %>
+                        <small class="alert alert-danger text-center">Incorrect</small>
+                    <% } %>
+                </div>
+
+                <div class="field-wrap mb-0">
+                    <label> Last Name<span class="req">*</span> </label>
+                    <input name="lname" type="text" value="<%= oldValues.lname %>" minlength="2" maxlength="10" required/>
+                    <% if (error.find(e => e.param == 'lname')) { %>
+                        <small class="alert alert-danger text-center">Incorrect</small>
+                    <% } %>
+                </div>
+            </div>
+            <!-- <div class="field-wrap">
+                <label>Male</label>
+                <input value="male" name="sex" type="radio" required>
+                <label>Female</label>
+                <input value="female" name="sex" type="radio" required>
+            </div> -->
+            <div class="field-wrap mb-0 mt-3">
+                <label>Email Address<span class="req">*</span> </label>
+                <input name="email" type="email" value="<%= oldValues.email %>" required/>
+                <% if (error.find(e => e.param == 'email')) { %>
+                    <small class="alert alert-danger text-center">Invalid Email!</small>
+                <% } %>
+
+                <% if (error.find(e => e.param == 'emailExists')) { %>
+                    <small class="alert alert-danger text-center">Email is already registered! <a href="/signin">Signin?</a></small>
+                <% } %>
+            </div>
+            <div class="top-row mt-3">
+                <div class="field-wrap mb-0">
+                    <label>Password<span class="req">*</span></label>
+                    <input name="password" type="password" value="<%= oldValues.password %>" minlength="6" maxlength="20" required/>
+                    <% if (error.find(e => e.param == 'password')) { %>
+                        <small class="alert alert-danger text-center">Incorrect</small>
+                    <% } %>
+                </div>
+                
+                <div class="field-wrap mb-0">
+                    <label>Confirm Password<span class="req">*</span></label>
+                    <input name="rePassword" type="password" required/>
+                    <% if (error.find(e => e.param == 'rePassword')) { %>
+                        <small class="alert alert-danger text-center">Passwords aren't matched!</small>
+                    <% } %>
+                </div>
+            </div>
+            
+            <button type="submit" class="button button-block mt-3">Get Started</button>
+        </form>
+    </div>
+</div>
+
+<%- include('shared/footer.ejs') %>

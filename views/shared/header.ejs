@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/fontawesome.css" integrity="sha384-eHoocPgXsiuZh+Yy6+7DsKAerLXyJmu2Hadh4QYyt+8v86geixVYwFqUvMU8X90l" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Notes By NodeJS</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bgNav">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/home">Notes By NodeJS</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <% if (!isLoggedIn) { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/signup">SignUp</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/signin">SignIn</a>
+                        </li>
+                    <% } %>
+
+                    <% if (isLoggedIn) { %>
+                        <li class="nav-item p-1">
+                            <a class="nav-link" href="/logout">Logout</a>
+                        </li>
+                        <li class="nav-item dropdown p-1">
+                            <div style="background-image: url('<%= avatar %>');" class="dropdown-toggle navAvatar"
+                                type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            </div>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <a class="dropdown-item text-white" href="/changepassword">
+                                        <div class="text-warning dropdownIcon">&#10000;</div>
+                                        <div class="dropdownText">Change Password</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-white" href="/changepic">
+                                        <div style="background-image: url('<%= avatar %>');" class="dropdownAvatar"></div>
+                                        <div class="dropdownText">Profile picture</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-white" type="button" data-bs-toggle="modal" data-bs-target="#deleteAccount">
+                                        <div class="text-danger dropdownIcon">&#x2639;</div>
+                                        <div class="dropdownText">Delete Account</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="modal fade" id="deleteAccount" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bgNav text-white border-0">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Account?!</h5>
+                <button type="button" class="bgNav text-white border-0" data-bs-dismiss="modal" aria-label="Close">&#10006;</button>
+            </div>
+            <div class="modal-body bgBody border-0 text-light text-center modalBodyPadd">
+                We know You got bored from us, so We are!
+            </div>
+            <form action="/deleteaccount" method="post" class="modal-footer bgBody border-0">
+                <input class="form-control d-none" name="noteID" id="noteID">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">oh, No!</button>
+                <button type="submit" class="btn bgLight text-white">Sure, I wanna leave!</button>
+            </form>
+        </div>
+        </div>
+    </div>
