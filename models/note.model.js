@@ -7,6 +7,6 @@ const noteSchema = mongoose.Schema({
   updated_at: {type: Date, default: Date.now}
 });
 
-let noteModel = mongoose.model('note', noteSchema) //name of model is always single
+let noteModel = mongoose.model('note', noteSchema) //name of model in single
 
 module.exports = noteModel;

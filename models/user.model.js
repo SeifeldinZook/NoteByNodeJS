@@ -10,6 +10,6 @@ const userSchema = mongoose.Schema({
   updated_at: {type: Date, default: Date.now}
 });
 
-let userModel = mongoose.model('user', userSchema) //name of model is always single
+let userModel = mongoose.model('user', userSchema) //name of model in single
 
 module.exports = userModel;

@@ -49,19 +49,19 @@
     </form>
 </div>
 
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header bgNav text-white border-0">
-            <h5 class="modal-title" id="exampleModalLabel">Delete Note?!</h5>
+            <h5 class="modal-title" id="deleteModalLabel">Delete Note?</h5>
             <button type="button" class="bgNav text-white border-0" data-bs-dismiss="modal" aria-label="Close">&#10006;</button>
         </div>
         <div class="modal-body bgBody border-0 text-light text-center modalBodyPadd">
-            Are you going to depend on your mind now to remember me?
+            Are you going to depend on your mind now to remember the details I save here?
         </div>
         <form action="/delete" method="post" class="modal-footer bgBody border-0">
             <input class="form-control d-none" name="noteID" id="noteID">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">I don't Remember my Name!</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">I don't remember my name!</button>
             <button type="submit" class="btn bgLight text-white">Trust Mind!</button>
         </form>
     </div>
@@ -89,7 +89,5 @@
         </div>
     </form>
 </div>
-
-
 
 <%- include("shared/footer.ejs")%>

@@ -32,6 +32,7 @@
 // });
 
 function getNoteID(id) {
+    console.log('id', id)
     document.getElementById('noteID').value = id
 }
 

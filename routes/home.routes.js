@@ -23,6 +23,7 @@ app.post('/addNote', async(req, res) => {
 });
 
 app.post('/delete', async(req, res) => {
+    console.log('req.body.noteID', req.body)
     await noteModel.findByIdAndDelete({_id: req.body.noteID});
     res.redirect('/home')
 });
