@@ -2,8 +2,11 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
-const port = 3000;
 // const multer = require('multer');
+
+// Constants
+const PORT = 8080;
+const HOST = "0.0.0.0";
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: false }));
@@ -45,6 +48,6 @@ mongoose.connect(
   }
 );
 
-app.listen(process.env.PORT || port, () =>
-  console.log(`Example app listening on port ${port}!`)
+app.listen(process.env.PORT || PORT, () =>
+  console.log(`Example app listening on port ${PORT}!`)
 );

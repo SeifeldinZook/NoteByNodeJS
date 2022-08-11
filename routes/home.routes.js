@@ -10,9 +10,9 @@ app.get("/home", auth, async (req, res) => {
   // res.json(await noteModel.find({}).populate('userID', '-password'))  (for learning)
   const UserNotes = await noteModel.find({ userID: req.session.userID });
   var user = await userModel.findOne({ _id: req.session.userID });
-  console.log("user", user);
+  console.log("==> user: ", user);
   const avatar = user.imgURL;
-  console.log("req.session", req.session);
+  console.log("==> req.session: ", req.session);
   await res.render("home.ejs", {
     name: req.session.userFN,
     isLoggedIn: true,
