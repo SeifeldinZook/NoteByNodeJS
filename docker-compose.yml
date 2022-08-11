@@ -5,4 +5,4 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SENDGRID_API_KEY: "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"
+      SENDGRID_API_KEY: "${sendGridApiKey}"
