@@ -1,7 +1,7 @@
-const app = require('express').Router();
-const signInController = require('../controllers/signInCont')
+const app = require("express").Router();
+const signInController = require("../controllers/signInCont");
 
-app.get('/signin', signInController.signIn)
-app.post('/handleSignin', signInController.handleSignIn);
+app.get("/signin", signInController.signIn);
+app.post("/handleSignin", signInController.handleSignIn);
 
-module.exports = app
+module.exports = app;

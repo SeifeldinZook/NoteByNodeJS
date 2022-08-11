@@ -1,6 +1,6 @@
-const app = require('express').Router();
+const app = require("express").Router();
 
-app.get('/emailverification', (req, res) => {
-  res.render('emailverification.ejs', {isLoggedIn: false})
+app.get("/emailverification", (req, res) => {
+  res.render("emailverification.ejs", { isLoggedIn: false });
 });
-module.exports = app
+module.exports = app;

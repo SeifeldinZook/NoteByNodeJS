@@ -1,93 +1,200 @@
 <%- include('shared/header.ejs') %>
 
 <div class="container mt-3">
-    <div class="row">
-        <div class="col-sm-6 text-left text-white"><h3>Welcome <%= name %>!</h3></div>
-        <div class="col-sm-6 text-right">
-            <button type="button" class="btn bgLight text-white" data-bs-toggle="modal" data-bs-target="#addNote">
-                &#10010; Add Note
-            </button>
-        </div>
+  <div class="row">
+    <div class="col-sm-6 text-left text-white">
+      <h3>Welcome <%= name %>!</h3>
     </div>
+    <div class="col-sm-6 text-right">
+      <button
+        type="button"
+        class="btn bgLight text-white"
+        data-bs-toggle="modal"
+        data-bs-target="#addNote"
+      >
+        &#10010; Add Note
+      </button>
+    </div>
+  </div>
 </div>
 
 <div class="container">
-    <div class="row">
-        <% for( let i = 0; i < UserNotes.length; i++ ) { %>
-            <div class="col-md-4 my-4">
-                <div class="note p-4 clearfix">
-                    <h5 id="NoteTitle<%= UserNotes[i]._id %>" class="float-left"><b> <%= UserNotes[i].NoteTitle %></b> </h5>
-                    <a type="button" onclick="getNoteID('<%= UserNotes[i]._id %>')" class="pl-3 float-right text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">&#10007;</a>
-                    <a type="button" onclick="editNote('<%= UserNotes[i]._id %>')" class="float-right text-success" data-bs-toggle="modal" data-bs-target="#editModal">&#9998;</a>
-                    <span class="clearfix"></span>
-                    <p id="NoteBody<%= UserNotes[i]._id %>"><%= UserNotes[i].NoteBody %></p>
-                    <small class="darker"><%= UserNotes[i].updated_at %></small>
-                </div>
-            </div>
-        <% } %>
+  <div class="row">
+    <% for( let i = 0; i < UserNotes.length; i++ ) { %>
+    <div class="col-md-4 my-4">
+      <div class="note p-4 clearfix">
+        <h5 id="NoteTitle<%= UserNotes[i]._id %>" class="float-left">
+          <b> <%= UserNotes[i].NoteTitle %></b>
+        </h5>
+        <a
+          type="button"
+          onclick="getNoteID('<%= UserNotes[i]._id %>')"
+          class="pl-3 float-right text-danger"
+          data-bs-toggle="modal"
+          data-bs-target="#deleteModal"
+          >&#10007;</a
+        >
+        <a
+          type="button"
+          onclick="editNote('<%= UserNotes[i]._id %>')"
+          class="float-right text-success"
+          data-bs-toggle="modal"
+          data-bs-target="#editModal"
+          >&#9998;</a
+        >
+        <span class="clearfix"></span>
+        <p id="NoteBody<%= UserNotes[i]._id %>"><%= UserNotes[i].NoteBody %></p>
+        <small class="darker"><%= UserNotes[i].updated_at %></small>
+      </div>
     </div>
+    <% } %>
+  </div>
 </div>
 
-<div class="modal fade" id="addNote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form action="/addNote" method="post">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bgNav text-white border-0">
-                    <h5 class="modal-title" id="exampleModalLabel">New Note!</h5>
-                    <button type="button" class="bgNav text-white border-0" data-bs-dismiss="modal" aria-label="Close">&#10006;</button>
-                </div>
-                <div class="modal-body bgBody border-0">
-                    <input type="text" name="title" placeholder="Title" class="form-control" minlength="2" maxlength="15" required>
-                    <textarea name="note" id="note" cols="30" rows="10" class="form-control my-2" placeholder="Write your note..."></textarea>
-                </div>
-                <div class="modal-footer bgBody border-0">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn bgLight text-white">Save Note</button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="addNote"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <form action="/addNote" method="post">
     <div class="modal-dialog">
-    <div class="modal-content">
+      <div class="modal-content">
         <div class="modal-header bgNav text-white border-0">
-            <h5 class="modal-title" id="deleteModalLabel">Delete Note?</h5>
-            <button type="button" class="bgNav text-white border-0" data-bs-dismiss="modal" aria-label="Close">&#10006;</button>
+          <h5 class="modal-title" id="exampleModalLabel">New Note!</h5>
+          <button
+            type="button"
+            class="bgNav text-white border-0"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            &#10006;
+          </button>
         </div>
-        <div class="modal-body bgBody border-0 text-light text-center modalBodyPadd">
-            Are you going to depend on your mind now to remember the details I save here?
+        <div class="modal-body bgBody border-0">
+          <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            class="form-control"
+            minlength="2"
+            maxlength="15"
+            required
+          />
+          <textarea
+            name="note"
+            id="note"
+            cols="30"
+            rows="10"
+            class="form-control my-2"
+            placeholder="Write your note..."
+          ></textarea>
         </div>
-        <form action="/delete" method="post" class="modal-footer bgBody border-0">
-            <input class="form-control d-none" name="noteID" id="noteID">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">I don't remember my name!</button>
-            <button type="submit" class="btn bgLight text-white">Trust Mind!</button>
-        </form>
+        <div class="modal-footer bgBody border-0">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn bgLight text-white">
+            Save Note
+          </button>
+        </div>
+      </div>
     </div>
-    </div>
+  </form>
 </div>
 
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form action="/editNote" method="post">
-        <input class="form-control d-none" name="noteID2" id="noteID2">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bgNav text-white border-0">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Note!</h5>
-                    <button type="button" class="bgNav text-white border-0" data-bs-dismiss="modal" aria-label="Close">&#10006;</button>
-                </div>
-                <div class="modal-body bgBody border-0">
-                    <input id="editNoteTitle" type="text" name="NoteTitle" placeholder="Title" class="form-control" minlength="2" maxlength="15" required>
-                    <textarea id="editNoteBody" name="NoteBody" cols="30" rows="10" class="form-control my-2"></textarea>
-                </div>
-                <div class="modal-footer bgBody border-0">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn bgLight text-white">Save Note</button>
-                </div>
-            </div>
+<div
+  class="modal fade"
+  id="deleteModal"
+  tabindex="-1"
+  aria-labelledby="deleteModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bgNav text-white border-0">
+        <h5 class="modal-title" id="deleteModalLabel">Delete Note?</h5>
+        <button
+          type="button"
+          class="bgNav text-white border-0"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          &#10006;
+        </button>
+      </div>
+      <div
+        class="modal-body bgBody border-0 text-light text-center modalBodyPadd"
+      >
+        Are you going to depend on your mind now to remember the details I save
+        here?
+      </div>
+      <form action="/delete" method="post" class="modal-footer bgBody border-0">
+        <input class="form-control d-none" name="noteID" id="noteID" />
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          I don't remember my name!
+        </button>
+        <button type="submit" class="btn bgLight text-white">
+          Trust Mind!
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="editModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <form action="/editNote" method="post">
+    <input class="form-control d-none" name="noteID2" id="noteID2" />
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bgNav text-white border-0">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Note!</h5>
+          <button
+            type="button"
+            class="bgNav text-white border-0"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            &#10006;
+          </button>
         </div>
-    </form>
+        <div class="modal-body bgBody border-0">
+          <input
+            id="editNoteTitle"
+            type="text"
+            name="NoteTitle"
+            placeholder="Title"
+            class="form-control"
+            minlength="2"
+            maxlength="15"
+            required
+          />
+          <textarea
+            id="editNoteBody"
+            name="NoteBody"
+            cols="30"
+            rows="10"
+            class="form-control my-2"
+          ></textarea>
+        </div>
+        <div class="modal-footer bgBody border-0">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn bgLight text-white">
+            Save Note
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
 
 <%- include("shared/footer.ejs")%>
