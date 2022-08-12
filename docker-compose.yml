@@ -4,6 +4,11 @@ services:
     build: .
     ports:
       - "8080:8080"
+    secrets: # secrets block only for 'web' service
+      - SENDGRID_API_KEY
     environment:
       SENDGRID_API_KEY: "${sendGridApiKey}"
       SENDGRID_API: "${sendGridApiKey}"
+secrets: # top level secrets block
+  SENDGRID_API_KEY:
+    external: true
